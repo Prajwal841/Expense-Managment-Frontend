@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { api } from '../../config/api'
 import { ExtractedData } from '../../utils/ocrUtils'
 
 export interface Receipt {
@@ -74,7 +75,7 @@ export const fetchReceipts = createAsyncThunk(
       console.log('Fetching receipts for user:', userId)
       console.log('Token:', localStorage.getItem('token'))
       
-      const response = await fetch(`/api/user/${userId}/receipts`, {
+      const response = await fetch(api(`/api/user/${userId}/receipts`), {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'X-User-Id': userId
@@ -128,8 +129,8 @@ export const saveReceipt = createAsyncThunk(
       const isUpdate = 'id' in receipt && receipt.id
       const method = isUpdate ? 'PUT' : 'POST'
       const url = isUpdate 
-        ? `/api/user/${userId}/receipts/${receipt.id}`
-        : `/api/user/${userId}/receipts`
+        ? api(`/api/user/${userId}/receipts/${receipt.id}`)
+        : api(`/api/user/${userId}/receipts`)
 
       const response = await fetch(url, {
         method,
@@ -166,7 +167,7 @@ export const deleteReceipt = createAsyncThunk(
         throw new Error('User not authenticated')
       }
 
-      const response = await fetch(`/api/user/${userId}/receipts/${receiptId}`, {
+      const response = await fetch(api(`/api/user/${userId}/receipts/${receiptId}`), {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

@@ -4,7 +4,7 @@ import { Mic, MicOff, CheckCircle, X } from 'lucide-react'
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
 import { useVoiceInput } from '../hooks/useVoiceInput'
 import { processVoiceExpense, clearResponse } from '../redux/slices/voiceExpenseSlice'
-import { checkRateLimit, clearRateLimitInfo } from '../redux/slices/rateLimitSlice'
+import { clearRateLimitInfo } from '../redux/slices/rateLimitSlice'
 
 const FloatingMicButton = () => {
   const dispatch = useAppDispatch()

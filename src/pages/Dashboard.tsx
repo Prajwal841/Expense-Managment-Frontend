@@ -10,12 +10,12 @@ import {
   Camera,
   X
 } from 'lucide-react'
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts'
+import { PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { fetchExpenses, addExpense, clearVoiceExpenseRefreshFlag } from '../redux/slices/expenseSlice'
 import { fetchBudgets } from '../redux/slices/budgetSlice'
 import { fetchCategories } from '../redux/slices/categorySlice'
-import { formatCurrency, getTotalExpenses, getExpensesByCategory, getCurrentMonthRange, getMonthExpenses, sortCategoriesById } from '../utils/helpers'
+import { formatCurrency, getTotalExpenses, getExpensesByCategory, getMonthExpenses, sortCategoriesById } from '../utils/helpers'
 import { Link } from 'react-router-dom'
 
 const Dashboard = () => {
@@ -98,7 +98,6 @@ const Dashboard = () => {
     }
   }
 
-  const currentMonthRange = getCurrentMonthRange()
   const currentMonthExpenses = getMonthExpenses(expenses, new Date())
   const totalSpent = getTotalExpenses(currentMonthExpenses)
   const expensesByCategory = getExpensesByCategory(currentMonthExpenses)
@@ -117,11 +116,11 @@ const Dashboard = () => {
     color: getCategoryColor(category) || DEFAULT_COLORS[index % DEFAULT_COLORS.length]
   }))
 
-  const barChartData = Object.entries(expensesByCategory).map(([category, amount]) => ({
-    category,
-    amount,
-    color: getCategoryColor(category)
-  }))
+  // const barChartData = Object.entries(expensesByCategory).map(([category, amount]) => ({
+  //   category,
+  //   amount,
+  //   color: getCategoryColor(category)
+  // }))
 
   // Mock data for spending trend (last 7 days)
   const spendingTrendData = [

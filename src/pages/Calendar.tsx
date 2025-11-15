@@ -6,7 +6,6 @@ import {
   DollarSign, 
   ChevronLeft, 
   ChevronRight,
-  Eye,
   Edit,
   Trash2,
   X,
@@ -14,7 +13,7 @@ import {
   Clock
 } from 'lucide-react'
 import Calendar from 'react-calendar'
-import { format, isSameDay, isSameMonth, startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns'
+import { format, isSameDay, isSameMonth, startOfMonth, endOfMonth } from 'date-fns'
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { fetchExpenses, deleteExpense, addExpense } from '../redux/slices/expenseSlice'
 import { fetchCategories } from '../redux/slices/categorySlice'
@@ -25,7 +24,7 @@ type Value = ValuePiece | [ValuePiece, ValuePiece]
 
 const CalendarView = () => {
   const dispatch = useAppDispatch()
-  const { expenses, loading } = useAppSelector((state) => state.expenses)
+  const { expenses } = useAppSelector((state) => state.expenses)
   const { categories } = useAppSelector((state) => state.categories)
   
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
@@ -152,8 +151,6 @@ const CalendarView = () => {
 
   // Get month statistics
   const getMonthStats = () => {
-    const start = startOfMonth(selectedDate)
-    const end = endOfMonth(selectedDate)
     const monthExpenses = expenses.filter(expense => {
       const expenseDate = new Date(expense.date)
       return isSameMonth(expenseDate, selectedDate)

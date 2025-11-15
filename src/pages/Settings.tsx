@@ -5,7 +5,6 @@ import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { toggleDarkMode } from '../redux/slices/uiSlice'
 import { 
   updateProfile, 
-  updateNotificationSettings, 
   changePassword, 
   exportData, 
   deleteAccount,

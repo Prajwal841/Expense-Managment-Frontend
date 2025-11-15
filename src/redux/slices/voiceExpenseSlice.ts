@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { api } from '../../config/api'
 
 export interface VoiceExpenseRequest {
   voiceText: string
@@ -35,7 +36,7 @@ export const processVoiceExpense = createAsyncThunk(
         throw new Error('No authentication token')
       }
 
-      const response = await fetch('/api/user/voice-expense/process', {
+      const response = await fetch(api('/api/user/voice-expense/process'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +77,7 @@ export const testVoiceExpense = createAsyncThunk(
         throw new Error('No authentication token')
       }
 
-      const response = await fetch('/api/user/voice-expense/test', {
+      const response = await fetch(api('/api/user/voice-expense/test'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

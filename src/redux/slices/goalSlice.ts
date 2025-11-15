@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { api } from '../../config/api'
 
 export interface Goal {
   id: string
@@ -41,7 +42,7 @@ export const fetchGoals = createAsyncThunk(
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No authentication token found')
       
-      const response = await fetch('/api/user/goals', {
+      const response = await fetch(api('/api/user/goals'), {
         headers: {
           'Authorization': `Bearer ${token}`,
           'X-User-Id': auth.user.id,
@@ -65,7 +66,7 @@ export const addGoal = createAsyncThunk(
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No authentication token found')
       
-      const response = await fetch('/api/user/goals', {
+      const response = await fetch(api('/api/user/goals'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -101,7 +102,7 @@ export const updateGoal = createAsyncThunk(
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No authentication token found')
       
-      const response = await fetch(`/api/user/goals/${goal.id}`, {
+      const response = await fetch(api(`/api/user/goals/${goal.id}`), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -143,7 +144,7 @@ export const deleteGoal = createAsyncThunk(
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No authentication token found')
       
-      const response = await fetch(`/api/user/goals/${id}`, {
+      const response = await fetch(api(`/api/user/goals/${id}`), {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -177,7 +178,7 @@ export const updateGoalProgress = createAsyncThunk(
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No authentication token found')
       
-      const response = await fetch(`/api/user/goals/${goalId}/progress`, {
+      const response = await fetch(api(`/api/user/goals/${goalId}/progress`), {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -213,7 +214,7 @@ export const updateGoalStatus = createAsyncThunk(
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No authentication token found')
       
-      const response = await fetch(`/api/user/goals/${goalId}/status`, {
+      const response = await fetch(api(`/api/user/goals/${goalId}/status`), {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Download, Calendar, TrendingUp, TrendingDown, DollarSign, PieChart, BarChart3, FileText, Table } from 'lucide-react'
-import { PieChart as RechartsPieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts'
+import { Download, TrendingUp, TrendingDown, DollarSign, PieChart, BarChart3, FileText, Table } from 'lucide-react'
+import { PieChart as RechartsPieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { fetchExpenses } from '../redux/slices/expenseSlice'
 import { fetchBudgets } from '../redux/slices/budgetSlice'
 import { fetchCategories } from '../redux/slices/categorySlice'
-import { formatCurrency, formatDate, getCurrentMonthRange } from '../utils/helpers'
+import { formatCurrency, formatDate } from '../utils/helpers'
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 import * as XLSX from 'xlsx'
@@ -94,7 +94,6 @@ const Reports = () => {
   const totalSpent = filteredExpenses.reduce((sum, expense) => sum + expense.amount, 0)
   const avgExpense = filteredExpenses.length > 0 ? totalSpent / filteredExpenses.length : 0
   const maxExpense = Math.max(...filteredExpenses.map(e => e.amount), 0)
-  const minExpense = Math.min(...filteredExpenses.map(e => e.amount), Infinity)
 
   // Default colors for pie chart
   const DEFAULT_COLORS = [
@@ -127,7 +126,7 @@ const Reports = () => {
     }
   })
 
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D']
+  // const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D']
 
   // Export functions
   const exportToPDF = () => {
@@ -490,7 +489,7 @@ const Reports = () => {
               </ResponsiveContainer>
               {/* Legend */}
               <div className="mt-4 grid grid-cols-2 gap-2">
-                {expensesByCategory.map((item, index) => (
+                {expensesByCategory.map((item) => (
                   <div key={item.name} className="flex items-center space-x-2 text-sm">
                     <div 
                       className="w-3 h-3 rounded-full flex-shrink-0" 

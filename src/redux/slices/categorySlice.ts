@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { api } from '../../config/api'
 
 export interface Category {
   id: string
@@ -32,7 +33,7 @@ export const fetchCategories = createAsyncThunk(
         throw new Error('User not authenticated')
       }
       
-      const response = await fetch('/api/user/categories', {
+      const response = await fetch(api('/api/user/categories'), {
         headers: {
           'Authorization': `Bearer ${token}`,
           'X-User-Id': userId
@@ -56,7 +57,7 @@ export const fetchCategories = createAsyncThunk(
 
 export const addCategory = createAsyncThunk(
   'categories/addCategory',
-  async (category: Omit<Category, 'id'>, { rejectWithValue }) => {
+  async (category: Omit<Category, 'id' | 'userId'>, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem('token')
       const userId = localStorage.getItem('userId')
@@ -65,7 +66,7 @@ export const addCategory = createAsyncThunk(
         throw new Error('User not authenticated')
       }
       
-      const response = await fetch('/api/user/categories', {
+      const response = await fetch(api('/api/user/categories'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -93,7 +94,7 @@ export const updateCategory = createAsyncThunk(
         throw new Error('User not authenticated')
       }
       
-      const response = await fetch(`/api/user/categories/${category.id}`, {
+      const response = await fetch(api(`/api/user/categories/${category.id}`), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -121,7 +122,7 @@ export const deleteCategory = createAsyncThunk(
         throw new Error('User not authenticated')
       }
       
-      const response = await fetch(`/api/user/categories/${id}`, {
+      const response = await fetch(api(`/api/user/categories/${id}`), {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

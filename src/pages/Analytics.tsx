@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { TrendingUp, TrendingDown, DollarSign, Calendar, Target, AlertTriangle } from 'lucide-react'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, AreaChart, Area, PieChart, Pie, Cell } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, PieChart, Pie, Cell } from 'recharts'
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { fetchExpenses } from '../redux/slices/expenseSlice'
 import { fetchCategories } from '../redux/slices/categorySlice'
-import { formatCurrency, formatDate } from '../utils/helpers'
+import { formatCurrency } from '../utils/helpers'
 
 const Analytics = () => {
   const dispatch = useAppDispatch()
@@ -62,12 +62,12 @@ const Analytics = () => {
     }
   }).filter(item => item.amount > 0)
 
-  // Spending trends
-  const spendingTrend = monthlyData.map((data, index) => ({
-    month: data.month,
-    spending: data.total,
-    trend: index > 0 ? ((data.total - monthlyData[index - 1].total) / monthlyData[index - 1].total) * 100 : 0
-  }))
+  // Spending trends (commented out unused variable)
+  // const spendingTrend = monthlyData.map((data, index) => ({
+  //   month: data.month,
+  //   spending: data.total,
+  //   trend: index > 0 ? ((data.total - monthlyData[index - 1].total) / monthlyData[index - 1].total) * 100 : 0
+  // }))
 
   // Top spending categories
   const topCategories = categoryData
@@ -80,7 +80,7 @@ const Analytics = () => {
   const highestMonth = monthlyData.reduce((max, month) => month.total > max.total ? month : max)
   const lowestMonth = monthlyData.reduce((min, month) => month.total < min.total ? month : min)
 
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8']
+  // const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8']
 
   return (
     <motion.div

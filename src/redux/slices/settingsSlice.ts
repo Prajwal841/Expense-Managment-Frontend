@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import { updateUser } from './authSlice'
+import { api } from '../../config/api'
 
 export interface UserProfile {
   name: string
@@ -68,7 +69,7 @@ export const updateProfile = createAsyncThunk(
         phoneNumber: profile.phone
       }
       
-      const response = await fetch(`/api/user/${auth.user.id}/update`, {
+      const response = await fetch(api(`/api/user/${auth.user.id}/update`), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -83,7 +84,7 @@ export const updateProfile = createAsyncThunk(
       }
       
       // The backend returns a plain text string, not JSON
-      const data = await response.text()
+      await response.text()
       
              // Update the auth state with the new user data
        dispatch(updateUser({
@@ -124,7 +125,7 @@ export const updateNotificationSettings = createAsyncThunk(
 
 export const changePassword = createAsyncThunk(
   'settings/changePassword',
-  async (passwords: { currentPassword: string; newPassword: string }, { rejectWithValue }) => {
+  async (_passwords: { currentPassword: string; newPassword: string }, { rejectWithValue }) => {
     try {
       // TODO: Replace with actual API call
       // const response = await api.put('/api/user/password', passwords)
@@ -179,7 +180,7 @@ export const exportData = createAsyncThunk(
 
 export const deleteAccount = createAsyncThunk(
   'settings/deleteAccount',
-  async (password: string, { rejectWithValue }) => {
+  async (_password: string, { rejectWithValue }) => {
     try {
       // TODO: Replace with actual API call
       // const response = await api.delete('/api/user/account', { data: { password } })
@@ -224,7 +225,9 @@ const settingsSlice = createSlice({
       })
       .addCase(updateProfile.fulfilled, (state, action) => {
         state.loading = false
-        state.profile = { ...state.profile, ...action.payload }
+        if (action.payload) {
+          state.profile = { ...state.profile, ...action.payload }
+        }
         state.success = 'Profile updated successfully!'
       })
       .addCase(updateProfile.rejected, (state, action) => {

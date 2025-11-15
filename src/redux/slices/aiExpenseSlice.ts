@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { api } from '../../config/api'
 
 export interface ParsedExpenseResponse {
   expenseId: number
@@ -42,7 +43,7 @@ export const parseExpenseWithAI = createAsyncThunk(
         throw new Error('User not authenticated')
       }
 
-      const response = await fetch('/api/ai/parse-expense', {
+      const response = await fetch(api('/api/ai/parse-expense'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

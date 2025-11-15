@@ -16,7 +16,6 @@ import { formatCurrency, getTotalExpenses, getExpensesByCategory, getMonthExpens
 
 const Insights = () => {
   const { expenses } = useAppSelector((state) => state.expenses)
-  const { budgets } = useAppSelector((state) => state.budgets)
 
   const currentMonthExpenses = getMonthExpenses(expenses, new Date())
   const totalSpent = getTotalExpenses(currentMonthExpenses)
@@ -99,7 +98,7 @@ const Insights = () => {
   ]
 
   const topCategories = Object.entries(expensesByCategory)
-    .sort(([,a], [,b]) => b - a)
+    .sort(([,a], [,b]) => (b as number) - (a as number))
     .slice(0, 5)
 
   return (
@@ -158,7 +157,7 @@ const Insights = () => {
             Top Spending Categories
           </h2>
           <div className="space-y-4">
-            {topCategories.map(([category, amount], index) => (
+            {topCategories.map(([category, amount]) => (
               <div key={category} className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <div className="w-8 h-8 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center">
@@ -167,12 +166,12 @@ const Insights = () => {
                   <div>
                     <p className="font-medium text-gray-900 dark:text-white">{category}</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                      {((amount / totalSpent) * 100).toFixed(1)}% of total
+                      {(((amount as number) / totalSpent) * 100).toFixed(1)}% of total
                     </p>
                   </div>
                 </div>
                 <span className="font-semibold text-gray-900 dark:text-white">
-                  {formatCurrency(amount)}
+                  {formatCurrency(amount as number)}
                 </span>
               </div>
             ))}

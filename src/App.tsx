@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAppSelector, useAppDispatch } from './redux/hooks'
-import { getCurrentUser, setDarkMode } from './redux/slices/authSlice'
+import { getCurrentUser } from './redux/slices/authSlice'
 import { fetchExpenses } from './redux/slices/expenseSlice'
 import { fetchCategories } from './redux/slices/categorySlice'
 import { fetchBudgets } from './redux/slices/budgetSlice'

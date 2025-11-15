@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { api } from '../../config/api'
 
 export interface Expense {
   id: string
@@ -55,7 +56,7 @@ export const fetchExpenses = createAsyncThunk(
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No authentication token found')
       
-      const response = await fetch('/api/user/expenses', {
+      const response = await fetch(api('/api/user/expenses'), {
         headers: {
           'Authorization': `Bearer ${token}`,
           'X-User-Id': auth.user.id,
@@ -84,7 +85,7 @@ export const fetchExpenses = createAsyncThunk(
 
 export const addExpense = createAsyncThunk(
   'expenses/addExpense',
-  async (expense: Omit<Expense, 'id'>, { rejectWithValue, getState }) => {
+  async (expense: Omit<Expense, 'id' | 'userId'>, { rejectWithValue, getState }) => {
     try {
       const { auth, categories } = getState() as { 
         auth: { user: { id: string } | null },
@@ -115,7 +116,7 @@ export const addExpense = createAsyncThunk(
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No authentication token found')
       
-      const response = await fetch('/api/user/expenses', {
+      const response = await fetch(api('/api/user/expenses'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -177,7 +178,7 @@ export const updateExpense = createAsyncThunk(
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No authentication token found')
       
-      const response = await fetch(`/api/user/expenses/${expense.id}`, {
+      const response = await fetch(api(`/api/user/expenses/${expense.id}`), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -217,7 +218,7 @@ export const deleteExpense = createAsyncThunk(
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No authentication token found')
       
-      const response = await fetch(`/api/user/expenses/${id}`, {
+      const response = await fetch(api(`/api/user/expenses/${id}`), {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -262,7 +263,7 @@ export const addExpenseWithReceipt = createAsyncThunk(
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No authentication token found')
       
-      const response = await fetch('/api/user/expenses/with-base64-receipt', {
+      const response = await fetch(api('/api/user/expenses/with-base64-receipt'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

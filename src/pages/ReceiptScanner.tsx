@@ -5,23 +5,19 @@ import { createWorker } from 'tesseract.js'
 import { 
   Camera, 
   FileText, 
-  DollarSign, 
-  Calendar, 
-  Tag, 
   CheckCircle, 
   AlertCircle,
   Loader2,
   X,
   Eye,
   Trash2,
-  Plus,
   Edit
 } from 'lucide-react'
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { fetchCategories } from '../redux/slices/categorySlice'
 import { addExpense, addExpenseWithReceipt } from '../redux/slices/expenseSlice'
-import { fetchReceipts, saveReceipt, deleteReceipt, removeReceipt, updateReceipt, addReceipt, Receipt } from '../redux/slices/receiptSlice'
-import { extractDataFromText, ExtractedData, cleanOCRText } from '../utils/ocrUtils'
+import { removeReceipt, updateReceipt, addReceipt, Receipt } from '../redux/slices/receiptSlice'
+import { extractDataFromText, cleanOCRText } from '../utils/ocrUtils'
 import { sortCategoriesById } from '../utils/helpers'
 
 const ReceiptScanner = () => {
@@ -172,7 +168,7 @@ const ReceiptScanner = () => {
     }
   }, [user?.id])
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: {
       'image/*': ['.jpeg', '.jpg', '.png', '.bmp', '.tiff']

@@ -7,13 +7,12 @@ import {
   X, 
   CheckCircle, 
   AlertCircle,
-  Loader2,
-  Volume2
+  Loader2
 } from 'lucide-react'
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
 import { useVoiceInput } from '../hooks/useVoiceInput'
 import { processVoiceExpense, clearResponse } from '../redux/slices/voiceExpenseSlice'
-import { checkRateLimit, clearRateLimitInfo } from '../redux/slices/rateLimitSlice'
+import { clearRateLimitInfo } from '../redux/slices/rateLimitSlice'
 import { fetchExpenses, refreshExpensesFromVoice } from '../redux/slices/expenseSlice'
 
 const VoiceExpenseInput = () => {
@@ -21,6 +20,8 @@ const VoiceExpenseInput = () => {
   const { response, loading, error } = useAppSelector((state: any) => state.voiceExpense)
   const { user } = useAppSelector((state: any) => state.auth)
   const { rateLimitInfo } = useAppSelector((state: any) => state.rateLimit)
+  const { profile } = useAppSelector((state: any) => state.settings)
+  const userCurrency = profile?.currency || 'INR'
   
   const {
     isListening,

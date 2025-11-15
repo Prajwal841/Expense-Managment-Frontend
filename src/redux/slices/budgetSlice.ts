@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { api } from '../../config/api'
 
 export interface Budget {
   id: string
@@ -42,7 +43,7 @@ export const fetchBudgets = createAsyncThunk(
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No authentication token')
       
-      const response = await fetch('/api/user/budgets', {
+      const response = await fetch(api('/api/user/budgets'), {
         headers: {
           'Authorization': `Bearer ${token}`,
           'X-User-Id': auth.user.id,
@@ -85,7 +86,7 @@ export const addBudget = createAsyncThunk(
         budgetPayload.memberIds = budget.memberIds || []
       }
       
-      const response = await fetch('/api/user/budgets', {
+      const response = await fetch(api('/api/user/budgets'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -136,7 +137,7 @@ export const updateBudget = createAsyncThunk(
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No authentication token')
       
-      const response = await fetch(`/api/user/budgets/${budget.id}`, {
+      const response = await fetch(api(`/api/user/budgets/${budget.id}`), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -163,7 +164,7 @@ export const deleteBudget = createAsyncThunk(
       const token = localStorage.getItem('token')
       if (!token) throw new Error('No authentication token')
       
-      const response = await fetch(`/api/user/budgets/${id}`, {
+      const response = await fetch(api(`/api/user/budgets/${id}`), {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

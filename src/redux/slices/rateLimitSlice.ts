@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { api } from '../../config/api'
 
 export interface RateLimitInfo {
   allowed: boolean
@@ -29,7 +30,7 @@ export const checkRateLimit = createAsyncThunk(
         throw new Error('No authentication token')
       }
 
-      const response = await fetch('/api/user/voice-expense/rate-limit', {
+      const response = await fetch(api('/api/user/voice-expense/rate-limit'), {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -1,11 +1,10 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   X, 
   ChevronLeft, 
   ChevronRight, 
-  Play,
   PiggyBank,
   CreditCard,
   Receipt,

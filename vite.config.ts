@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://localhost:8086',
+        target: 'https://expense-management-backend-2h1l.onrender.com',
         changeOrigin: true,
         secure: false,
       }

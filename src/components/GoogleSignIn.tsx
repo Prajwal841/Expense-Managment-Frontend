@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { useAppDispatch } from '../redux/hooks'
+import { api } from '../config/api'
 
 declare global {
   interface Window {
@@ -17,10 +17,8 @@ interface GoogleSignInProps {
 const GoogleSignIn: React.FC<GoogleSignInProps> = ({ 
   onSuccess, 
   onError, 
-  text = "Sign in with Google",
   className = ""
 }) => {
-  const dispatch = useAppDispatch()
   const googleButtonRef = useRef<HTMLDivElement>(null)
   const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "883452519737-nqhdbje3tf6796p1d1h4647jaua0a0t0.apps.googleusercontent.com"
 
@@ -50,7 +48,7 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({
         console.log('Google Sign-In response:', response)
         
         // Send the credential to your backend
-        const backendResponse = await fetch('/api/user/auth', {
+        const backendResponse = await fetch(api('/api/user/auth'), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -3,12 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Plus, 
   Search, 
-  Filter, 
   Edit, 
   Trash2, 
-  Calendar,
-  DollarSign,
-  Tag,
   X,
   Receipt
 } from 'lucide-react'
@@ -34,7 +30,7 @@ interface ExpenseFormData {
 
 const Expenses = () => {
   const dispatch = useAppDispatch()
-  const { expenses, loading, error, filters } = useAppSelector((state) => state.expenses)
+  const { expenses, error, filters } = useAppSelector((state) => state.expenses)
   const { categories } = useAppSelector((state) => state.categories)
   const { user, isAuthenticated } = useAppSelector((state) => state.auth)
   
@@ -116,7 +112,7 @@ const Expenses = () => {
     }
   }
 
-  const handleFilterChange = (key: string, value: string) => {
+  const handleFilterChange = (key: string, value: string | { start: string; end: string }) => {
     dispatch(setFilters({ [key]: value }))
   }
 
