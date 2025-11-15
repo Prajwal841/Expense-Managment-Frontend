@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { 
   Brain, 
   TrendingUp, 
-  TrendingDown, 
   Lightbulb,
   Target,
   AlertTriangle,

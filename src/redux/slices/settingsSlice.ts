@@ -95,10 +95,10 @@ export const updateProfile = createAsyncThunk(
       
       // Return the updated profile data
       return {
-        name: profile.name,
-        email: profile.email,
+        name: profile.name || '',
+        email: profile.email || '',
         phone: profile.phone,
-        currency: profile.currency
+        currency: profile.currency || 'INR'
       }
     } catch (error) {
       return rejectWithValue(error instanceof Error ? error.message : 'Failed to update profile')
@@ -226,7 +226,13 @@ const settingsSlice = createSlice({
       .addCase(updateProfile.fulfilled, (state, action) => {
         state.loading = false
         if (action.payload) {
-          state.profile = { ...state.profile, ...action.payload }
+          // Ensure all required fields are present
+          state.profile = {
+            name: action.payload.name || state.profile.name,
+            email: action.payload.email || state.profile.email,
+            phone: action.payload.phone,
+            currency: action.payload.currency || state.profile.currency
+          }
         }
         state.success = 'Profile updated successfully!'
       })

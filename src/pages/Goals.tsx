@@ -13,7 +13,8 @@ import {
   Clock,
   AlertCircle,
   Search,
-  BarChart3
+  BarChart3,
+  PieChart
 } from 'lucide-react'
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { 

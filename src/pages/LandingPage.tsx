@@ -133,23 +133,23 @@ const LandingPage = () => {
 
   const testimonials = [
     {
-      name: 'Sarah Johnson',
-      role: 'Freelance Designer',
-      content: 'The voice AI feature is incredible! I can just speak my expenses and they get added automatically. It saves me so much time.',
+      name: 'Priya Sharma',
+      role: 'Software Engineer, Bangalore',
+      content: 'As a working professional in Bangalore, tracking daily expenses was a hassle. The voice AI feature is amazing - I just say "spent 500 rupees on lunch" and it\'s done! Perfect for busy Indians like me.',
       rating: 5,
-      avatar: '👩‍🎨'
+      avatar: '👩‍💻'
     },
     {
-      name: 'Mike Chen',
-      role: 'Business Owner',
-      content: 'The receipt scanning feature is a game-changer. I scan all my receipts and the app extracts everything perfectly.',
+      name: 'Rajesh Kumar',
+      role: 'Small Business Owner, Mumbai',
+      content: 'Running a business in Mumbai means lots of receipts. The receipt scanning feature extracts all details in seconds - even from handwritten bills! This app has transformed how I manage business expenses.',
       rating: 5,
       avatar: '👨‍💼'
     },
     {
-      name: 'Emma Davis',
-      role: 'Student',
-      content: 'The analytics helped me understand where my money goes. I\'ve saved 30% more since using this app!',
+      name: 'Ananya Patel',
+      role: 'College Student, Delhi',
+      content: 'Being a student in Delhi, every rupee counts. The analytics showed me I was spending too much on food delivery. Now I\'ve saved ₹2000 per month and can focus on my studies without financial stress!',
       rating: 5,
       avatar: '👩‍🎓'
     }
@@ -383,10 +383,10 @@ const LandingPage = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-              Loved by Users Worldwide
+              Trusted by Indians Across the Country
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              See what our users have to say about their experience with ExpenseTracker.
+              See what our users from Mumbai, Delhi, Bangalore, and beyond have to say about their experience.
             </p>
           </motion.div>
 
@@ -626,7 +626,7 @@ const LandingPage = () => {
           
           <div className="border-t border-gray-800 pt-8 text-center">
             <p className="text-gray-400">
-              &copy; 2024 ExpenseTracker. All rights reserved. Made with ❤️ for better financial management.
+              &copy; 2024 ExpenseTracker. All rights reserved. Made By Prajwal Patil with ❤️ for better financial management.
             </p>
           </div>
         </div>

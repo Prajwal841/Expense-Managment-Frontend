@@ -10,7 +10,7 @@ import {
   Camera,
   X
 } from 'lucide-react'
-import { PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import { PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts'
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { fetchExpenses, addExpense, clearVoiceExpenseRefreshFlag } from '../redux/slices/expenseSlice'
 import { fetchBudgets } from '../redux/slices/budgetSlice'

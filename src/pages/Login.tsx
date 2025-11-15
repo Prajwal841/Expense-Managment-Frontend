@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
-import { Eye, EyeOff, Mail, Lock, AlertCircle, BarChart3, Mic, Camera, Brain, Shield, Zap, CheckCircle } from 'lucide-react'
+import { Eye, EyeOff, Mail, Lock, AlertCircle, BarChart3, Mic, Camera, Brain, Shield } from 'lucide-react'
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { login, clearError, resendVerification } from '../redux/slices/authSlice'
 import GoogleSignIn from '../components/GoogleSignIn'
