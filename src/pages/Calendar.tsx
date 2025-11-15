@@ -13,7 +13,7 @@ import {
   Clock
 } from 'lucide-react'
 import Calendar from 'react-calendar'
-import { format, isSameDay, isSameMonth, startOfMonth, endOfMonth } from 'date-fns'
+import { format, isSameDay, isSameMonth } from 'date-fns'
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { fetchExpenses, deleteExpense, addExpense } from '../redux/slices/expenseSlice'
 import { fetchCategories } from '../redux/slices/categorySlice'

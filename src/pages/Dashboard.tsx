@@ -21,7 +21,6 @@ import { Link } from 'react-router-dom'
 const Dashboard = () => {
   const dispatch = useAppDispatch()
   const { expenses, loading, voiceExpenseRefreshNeeded } = useAppSelector((state) => state.expenses)
-  const { budgets } = useAppSelector((state) => state.budgets)
   const { categories } = useAppSelector((state) => state.categories)
   const { profile } = useAppSelector((state) => state.settings)
   
@@ -327,7 +326,7 @@ const Dashboard = () => {
                     </span>
                   </div>
                   <span className="text-sm font-medium text-gray-900 dark:text-white">
-                    {formatCurrency(item.value, userCurrency)}
+                    {formatCurrency(item.value as number, userCurrency)}
                   </span>
                 </div>
               ))}

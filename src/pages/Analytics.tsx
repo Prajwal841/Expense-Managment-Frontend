@@ -263,7 +263,7 @@ const Analytics = () => {
               </ResponsiveContainer>
               {/* Legend */}
               <div className="mt-4 grid grid-cols-2 gap-2">
-                {categoryData.map((item, index) => (
+                {categoryData.map((item) => (
                   <div key={item.name} className="flex items-center space-x-2 text-sm">
                     <div 
                       className="w-3 h-3 rounded-full flex-shrink-0" 

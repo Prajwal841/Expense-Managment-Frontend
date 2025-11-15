@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { Plus, Edit, Trash2, Search, Filter, Tag } from 'lucide-react'
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { fetchCategories, addCategory, updateCategory, deleteCategory } from '../redux/slices/categorySlice'
-import { formatCurrency, sortCategoriesById } from '../utils/helpers'
+import { sortCategoriesById } from '../utils/helpers'
 
 interface CategoryFormData {
   name: string
