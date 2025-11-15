@@ -20,7 +20,7 @@ const GoogleSignIn: React.FC<GoogleSignInProps> = ({
   className = ""
 }) => {
   const googleButtonRef = useRef<HTMLDivElement>(null)
-  const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "883452519737-nqhdbje3tf6796p1d1h4647jaua0a0t0.apps.googleusercontent.com"
+  const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "998061933872-l0l8js3v7mgu2d03d72g4rp171jlvdaq.apps.googleusercontent.com"
 
   useEffect(() => {
     const initializeGoogleSignIn = () => {
